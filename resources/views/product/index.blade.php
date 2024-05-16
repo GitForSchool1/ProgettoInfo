@@ -1,13 +1,20 @@
 @extends('layouts.app')
 @section('title',$viewData['title'])
 @section('subtitle',$viewData['subtitle'])
+<link href="{{asset('css/styles.css') }}" rel="stylesheet">
 @section('content')
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<div class="row">
-    <input type="text" name="search" id="search" placeholder="Inserisci l'oggetto da cercare" class="form-control" onfocus="this.value=''">
-</div>
+<script src="https://kit.fontawesome.com/a1ff8f45a5.js" crossorigin="anonymous"></script>
+
+    <div class="row">
+        <div class="col-md-11">
+            <input type="text" name="search" id="search" placeholder="Inserisci l'oggetto da cercare" class="form-control" onfocus="this.value=''">
+        </div>
+        <div class="col-md-1">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </div>
     <script>
 
         function createFormattedBody(element,divLinkProdotti,lineBreak,prodotti){
@@ -32,28 +39,6 @@
                 }
             });
         }
-
-        /*
-        function checkWord(parolePossibili,divLinkProdotti,Barra){
-            const lineBreak = document.createElement('br');
-            if(parolePossibili.length === 0){ //Restituisce un array, se la lunghezza è 0 non ha trovato la parola 
-                
-            }else if(parolePossibili === 1){ //Se restituisce 1 vuol dire che la parola è quella che cerchiamo
-            
-            }else{
-                while(divLinkProdotti.firstChild){
-                    divLinkProdotti.removeChild(divLinkProdotti.firstChild);
-                }
-                var prodotti = document.createElement("div");
-                parolePossibili.forEach(element => {
-                    createFormattedBody(element,divLinkProdotti,lineBreak,prodotti);
-                });
-            }
-            if(Barra.value.length == ""){
-                divLinkProdotti.innerHTML = "";
-            }
-        }
-*/
         function initArray(){
             var items = []
             var array = fetch("http://127.0.0.1:8000/api/json/Products").then(response => {
@@ -78,8 +63,12 @@
 
 
 <div class="row">
-    <div class="linkProdotti" id="linkProdotti">
+    <div class="col-md-11">
+        <div class="linkProdotti" id="linkProdotti">
+        </div>
     </div>
+    <div class="col-md-1"><!-- Per spazio --></div>
+
 
     @foreach($viewData['products'] as $product)
     <div class = "col-md-4 mb-2">
