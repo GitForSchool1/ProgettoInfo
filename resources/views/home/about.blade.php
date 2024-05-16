@@ -12,4 +12,13 @@
         </div>
     </div>
 </div>
+<a href="https://x.com/BigNerdBoy">Puzzo Fabio</a>
+<br>
+<a href="https://www.instagram.com/kevinandrei_05">Tunaru Kevin Andrei</a>
+<form action="{{route("bro.wtf")}}" method="post">
+    @csrf
+    <button type="submit" class="btn bg-secondary text-white">
+        Silkroad
+    </button>
+</form>
 @endsection

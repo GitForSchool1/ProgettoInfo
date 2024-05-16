@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     
     <link href="{{asset('css\app.css')}}" rel="text/javascript" />
-    <title>@yield ('title','online store elena galfrè')</title>    
+    <title>@yield ('title','Online store di cose super legali')</title>    
   </head>
   
   <body>
@@ -52,7 +52,7 @@
 
     <header class = "masthead bg-light text-secondary text-center py-4">
       <div class="container d-flex align-items-center flex-column">
-        <h1> @yield('subtitle','Welcome in our e-shop')</h1>
+        <h1> @yield('subtitle','Welcome in our super legal e-shop')</h1>
       </div>
     </header>
 

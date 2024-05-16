@@ -22,6 +22,7 @@ Route::get('/products','App\Http\Controllers\ProductController@index')->name("pr
 Route::get('/products/{id}','App\Http\Controllers\ProductController@show')->name("product.show");
 
 Route::get("/search","App\Http\Controllers\ProductController@search")->name("products.search");
+Route::post("/silkroad","App\Http\Controllers\HomeController@browtf")->name("bro.wtf");
 
 Route::middleware('admin')->group(function()
 {

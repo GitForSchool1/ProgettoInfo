@@ -14,26 +14,19 @@ class HomeController extends Controller
         return view('home.index')->with("viewData",$viewData);
     
     }
-    
-    public function about() {
-    
-
-        /*$title = "Our story";
-        $subtitle = ".....non so cosa scrivere...";
-        $description = "descrizione....";
-        $author = "autore...";
-        
-
-        return view('home.about')->with("title",$title)
-        ->with("subtitle",$subtitle)
-        ->with("description",$description)
-        ->with("author",$author);*/
-
+    public function browtf() {
         $viewData = [];
-        $viewData['title'] = "Our story";
-        $viewData['subtitle'] = ".....non so cosa scrivere...";
-        $viewData['description'] = "descrizione....";
-        $viewData['author'] = "autore...";
+        $viewData['title'] = "Un nostalgico eh";
+        $viewData['subtitle'] = "Magari";
+
+        return view('home.silkroad')->with("viewData",$viewData);
+    }
+    public function about() {
+        $viewData = [];
+        $viewData['title'] = "Siamo una gang criminale";
+        $viewData['subtitle'] = "Pagina di copertura per il nuovo silkroad";
+        $viewData['description'] = "Questa pagina serve da copertura per il nuovo silkroad, non vediamo piante normali ma sono in realtà droghe sintetiche e non";
+        $viewData['author'] = "";
 
         return view('home.about')->with("viewData",$viewData);
     
