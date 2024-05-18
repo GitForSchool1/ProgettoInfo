@@ -16,58 +16,60 @@
         </div>
     </div>
     <script>
-
-        function createFormattedBody(element,divLinkProdotti,lineBreak,prodotti){
-            var parolaIndice = items.indexOf(element)+1;
+        function createFormattedBody(element, divLinkProdotti, prodotti) {
+            divLinkProdotti.appendChild(prodotti);
+            var parolaIndice = items.indexOf(element) + 1;
             var newLink = document.createElement("a");
             newLink.href = "products/" + parolaIndice;
             newLink.textContent = element;
-            divLinkProdotti.appendChild(prodotti,divLinkProdotti);
             divLinkProdotti.appendChild(newLink);
+            
+            // Aggiungi un line break per andare a capo
+            var lineBreak = document.createElement('br');
             divLinkProdotti.appendChild(lineBreak);
         }
-        function checkWord(parolePossibili,divLinkProdotti,Barra){
+
+        function checkWord(parolePossibili, divLinkProdotti, Barra) {
             divLinkProdotti.innerHTML = "";
-            const lineBreak = document.createElement('br');
             var prodotti = document.createElement("div");
             parolePossibili.forEach(element => {
-                if(element.includes(Barra.value.toLowerCase())){
-                    createFormattedBody(element,divLinkProdotti,lineBreak,prodotti);
+                if (element.includes(Barra.value.toLowerCase())) {
+                    createFormattedBody(element, divLinkProdotti, prodotti);
                 }
-                if(Barra.value == ""){
-                   divLinkProdotti.innerHTML = "";
+                if (Barra.value == "") {
+                    divLinkProdotti.innerHTML = "";
                 }
             });
         }
-        function initArray(){
-            var items = []
+
+        function initArray() {
+            var items = [];
             var array = fetch("http://127.0.0.1:8000/api/json/Products").then(response => {
-                response.json().then(data=>{
+                response.json().then(data => {
                     data.forEach(element => {
                         items.push(element.name.toLowerCase());
                     });
                 });
-            })
+            });
 
             return items;
         }
+
         const items = initArray();
         document.addEventListener("DOMContentLoaded", function() {
             let divLinkProdotti = document.getElementById('linkProdotti');
             let Barra = document.getElementById('search');
-            var BarraDiRicerca = Barra.addEventListener('input',function(){
-            checkWord(items,divLinkProdotti,Barra);
+            Barra.addEventListener('input', function() {
+                checkWord(items, divLinkProdotti, Barra);
             });
-    });
+        });
     </script>
 
 
 <div class="row">
     <div class="col-md-11">
-        <div class="linkProdotti" id="linkProdotti">
-        </div>
+        <div class="linkProdotti" id="linkProdotti"></div>
     </div>
-    <div class="col-md-1"><!-- Per spazio --></div>
 
 
     @foreach($viewData['products'] as $product)
