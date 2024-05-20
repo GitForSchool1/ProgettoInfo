@@ -24,9 +24,9 @@
             newLink.textContent = element;
             divLinkProdotti.appendChild(newLink);
             
-            // Aggiungi un line break per andare a capo
+            // Aggiungi un linebreak per andare a capo
             var lineBreak = document.createElement('br');
-            divLinkProdotti.appendChild(lineBreak);
+            divLinkProdotti.appendChild(lineBreak); //Questo serve per aggiungere al tag altri tag
         }
 
         function checkWord(parolePossibili, divLinkProdotti, Barra) {
@@ -42,12 +42,12 @@
             });
         }
 
-        function initArray() {
+        function initArray() { //Questa funzione serve per inizializzare un array facendo una richiesta alle api che abbiamo esposto
             var items = [];
             var array = fetch("http://127.0.0.1:8000/api/json/Products").then(response => {
                 response.json().then(data => {
                     data.forEach(element => {
-                        items.push(element.name.toLowerCase());
+                        items.push(element.name.toLowerCase()); //Mette nell'array tutte cose
                     });
                 });
             });
@@ -59,10 +59,21 @@
         document.addEventListener("DOMContentLoaded", function() {
             let divLinkProdotti = document.getElementById('linkProdotti');
             let Barra = document.getElementById('search');
-            Barra.addEventListener('input', function() {
+
+            Barra.addEventListener('input', function() { //Quando si sta digitando qualcosa questa funzione prende vita
                 checkWord(items, divLinkProdotti, Barra);
             });
+
+            Barra.addEventListener('keydown', function(event) { //Questo serve per controllare se l'utente ha premuto il tasto "ENTER"
+                if (event.key === 'Enter') {
+                    const links = divLinkProdotti.getElementsByTagName('a');
+                    if (links.length === 1) {
+                        window.location.href = links[0].href; //Questo serve per reindirizzare l'utente restando sulla stessa pagina
+                    }
+                }
+            });
         });
+
     </script>
 
 
