@@ -12,7 +12,7 @@
             <input type="text" name="search" id="search" placeholder="Inserisci l'oggetto da cercare" class="form-control" onfocus="this.value=''">
         </div>
         <div class="col-md-1">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="fa-solid fa-magnifying-glass" onclick=""></button>
         </div>
     </div>
     <script>
@@ -55,11 +55,7 @@
             return items;
         }
 
-        const items = initArray();
-        document.addEventListener("DOMContentLoaded", function() {
-            let divLinkProdotti = document.getElementById('linkProdotti');
-            let Barra = document.getElementById('search');
-
+        function eventBarra(Barra,divLinkProdotti){
             Barra.addEventListener('input', function() { //Quando si sta digitando qualcosa questa funzione prende vita
                 checkWord(items, divLinkProdotti, Barra);
             });
@@ -72,6 +68,14 @@
                     }
                 }
             });
+        }
+
+        const items = initArray();
+        document.addEventListener("DOMContentLoaded", function() {
+            let divLinkProdotti = document.getElementById('linkProdotti');
+            let Barra = document.getElementById('search');
+            eventBarra(Barra,divLinkProdotti);
+
         });
 
     </script>
